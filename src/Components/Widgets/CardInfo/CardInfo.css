@@ -1,0 +1,23 @@
+.card-info{
+    display: flex;
+    flex-direction: row;
+    flex-grow:1;
+    margin-bottom:1rem;
+    font-size: 0.9rem;
+    color:rgb(14, 89, 163);
+    align-items: center;
+}
+
+.card-info .team{
+    background: #777;
+    padding:0.2rem;
+    color:#fff;
+}
+
+.card-info .date{
+    margin-left:0.5rem;
+}
+
+.card-info .fa{
+    margin-right: 0.2rem
+}

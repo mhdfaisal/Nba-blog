@@ -1,0 +1,4 @@
+.editor-wrapper{
+    position: static !important;
+    box-sizing: content-box;
+}

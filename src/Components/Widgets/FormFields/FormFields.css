@@ -1,0 +1,14 @@
+.input{
+padding:1%;
+outline:none;
+border:1% solid #888;
+display: block;
+width:100%;
+margin:4% 0 4% 0;
+}
+
+select{
+    padding: 1%;
+    width: 100%;
+    margin:2% 0 2% 0;
+}

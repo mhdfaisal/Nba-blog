@@ -1,0 +1,9 @@
+.PostMeta{
+    padding:0.7rem;
+    border: 1px solid #999;
+    border-top:none;
+    font-size: 0.8rem;
+    background: #fff;
+    width:99%;
+    margin:0.3rem auto;
+}

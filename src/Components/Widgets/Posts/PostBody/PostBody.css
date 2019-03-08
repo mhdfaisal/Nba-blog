@@ -1,0 +1,27 @@
+.PostBody{
+    padding: 0.8rem;
+}
+
+.PostBody-title{
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.PostBody-image{
+    height: 50vh;
+    max-width: 100%;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat;
+    margin-bottom: 1rem;
+}
+
+.PostBody-video{
+    width:50vw;
+}
+
+.PostBody-body{
+    font-size: 0.9rem;
+    text-align:justify;
+    line-height: 1.3rem;
+}

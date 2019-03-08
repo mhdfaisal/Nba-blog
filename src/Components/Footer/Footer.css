@@ -1,0 +1,9 @@
+.footer{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    background: #000;
+    align-items: center;
+    color:#fff;
+    justify-content: center;
+}

@@ -1,0 +1,39 @@
+.loadmore-btn{
+    color:#fff;
+    background: rgb(6, 123, 240);
+    border:1px solid rgb(6, 123, 240);
+    padding:0.4rem;
+    display: block;
+    margin: 0 auto;
+    width:100%;
+    position: relative;
+    text-decoration: none;
+    text-align: center;
+}
+
+.loadmore-btn::after{
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height: 100%;
+    content: ' ';
+    display: block;
+    background: #fff;
+    z-index:-1;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+}
+
+.loadmore-btn:active.loadmore-btn::after{
+   z-index: 1;
+   transform: scaleY(1.2);
+   -webkit-transform: scaleY(1.2);
+   -moz-transform: scaleY(1.2);
+   -ms-transform: scaleY(1.2);
+   -o-transform: scaleY(1.2);
+   opacity:0;
+}

@@ -1,0 +1,24 @@
+.navItem{
+    text-align:justify;
+    padding:1rem;
+    border-bottom: 1px solid #fff;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+}
+
+.navItem:hover{
+    background: #555;
+}
+
+.navItem a{
+    color:#fff;
+    text-decoration: none;
+    display: block;
+}
+
+.navItem .fa{
+    margin-right:0.1rem;
+}
