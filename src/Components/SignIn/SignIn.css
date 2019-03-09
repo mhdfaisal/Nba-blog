@@ -1,4 +1,4 @@
-form{
+.sign-in-form{
     max-width:40%;
     margin: 0 auto;
     height:72.2vh;
@@ -30,7 +30,7 @@ button:hover, button:active{
 }
 
 @media only screen and (max-width:768px){
-    form{
+    .sign-in-form{
         max-width:90%;
         height:75.8vh;
     }

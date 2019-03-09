@@ -5,16 +5,27 @@ import SliderTemplate from './SliderTemplate';
 
 class SlickSlider extends React.Component{
     
-    state={slideData:[]}
+    state={startKey:'' , slideData:[]}
 
      componentDidMount(){
-        
-        firebaseArticles.orderByChild('id').startAt(this.props.start).endAt(this.props.end-1).once('value')
-        .then((snapshot)=> {
-            const data = firebaseLooper(snapshot);
-            this.setState({slideData:data});
-        })
+         let startKey = '';
+         firebaseArticles.limitToFirst(1).once('value')
+         .then((snapshot)=>{
+            snapshot.forEach(childSnapshot =>{
+                startKey = childSnapshot.key;
+            });
+            this.setState({startKey}, ()=>{
+                this.loadSlideData()
+            });
+         })
+     }
 
+     loadSlideData = ()=>{
+        firebaseArticles.orderByKey().startAt(this.state.startKey).limitToFirst(this.props.limit).once('value')
+        .then(snapshot=>{
+            const slideData = firebaseLooper(snapshot);
+            this.setState({slideData});
+        })
      }
 
     render(){

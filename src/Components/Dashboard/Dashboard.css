@@ -1,4 +1,18 @@
+.dashboard-form {
+  max-width: 40%;
+  margin: 0 auto;
+}
+
 .editor-wrapper{
-    position: static !important;
-    box-sizing: content-box;
+  margin-top:5%;
+}
+
+.editor-editor{
+  border: 1px solid #e1e1e1;
+}
+
+@media only screen and (max-width: 768px) {
+  .dashboard-form {
+    max-width: 90%;
+  }
 }
