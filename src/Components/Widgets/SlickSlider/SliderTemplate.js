@@ -23,7 +23,7 @@ class SliderTemplate extends React.Component{
       };
 
       componentDidUpdate(prevProps){
-        if(prevProps!==this.props.slideData){
+        if(prevProps!==this.props.slideData && this.props.slideData.length>0){
             this.getImageURL(this.props.slideData);
         }
       }
@@ -39,8 +39,10 @@ class SliderTemplate extends React.Component{
             });
         Promise.all(imageURL)
         .then((urlValues)=>{
-            // this.setState({imageURL: [...urlValues]});
-            console.log(urlValues);
+            return urlValues;
+        })
+        .then(urlValues =>{
+            this.setState({imageURL:urlValues});
         })
       }
 
