@@ -14,7 +14,7 @@ class Dashboard extends React.Component {
   state = {
     editorState: EditorState.createEmpty(),
     postError: "",
-    renderSubmit:true,
+    renderSubmit:false,
     formData: {
       title: {
         element: "input",
@@ -66,7 +66,7 @@ class Dashboard extends React.Component {
 
       team: {
         element: "select",
-        value: "Hawks",
+        value: "0",
         label: true,
         labelText: "Select a team",
         config: {
