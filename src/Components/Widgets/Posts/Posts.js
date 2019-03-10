@@ -56,7 +56,7 @@ class Posts extends React.Component{
     }
 
     fetchTeam = (teamId)=>{
-        firebaseTeams.orderByChild('id').equalTo(teamId).once('value')
+        firebaseTeams.orderByChild('id').equalTo(parseInt(teamId)).once('value')
         .then(snapshot =>  {
           const data = firebaseLooper(snapshot);
           return data;

@@ -4,11 +4,10 @@ import {Link} from 'react-router-dom';
 import {firebase} from '../../../firebase';
 
 import  './SlickSlider.css';
-import { resolve } from 'path';
-import { reject } from 'q';
+
 
 class SliderTemplate extends React.Component{
-
+    _isMounted = false;
     state = {imageURL:[]}
 
     settings = {
@@ -22,10 +21,18 @@ class SliderTemplate extends React.Component{
         ...this.props.settings
       };
 
+      componentDidMount(){
+          this._isMounted = true;
+      }
+
       componentDidUpdate(prevProps){
         if(prevProps!==this.props.slideData && this.props.slideData.length>0){
             this.getImageURL(this.props.slideData);
         }
+      }
+
+      componentWillUnmount(){
+          this._isMounted = false;
       }
 
       getImageURL = (slideData)=>{
@@ -42,7 +49,9 @@ class SliderTemplate extends React.Component{
             return urlValues;
         })
         .then(urlValues =>{
-            this.setState({imageURL:urlValues});
+            if(this._isMounted){
+                this.setState({imageURL:urlValues});
+            }
         })
       }
 

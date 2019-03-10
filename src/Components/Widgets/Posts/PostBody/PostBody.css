@@ -12,7 +12,7 @@
     max-width: 100%;
     background-size: cover !important;
     background-position: center !important;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat !important;
     margin-bottom: 1rem;
 }
 
@@ -24,4 +24,6 @@
     font-size: 0.9rem;
     text-align:justify;
     line-height: 1.3rem;
+    background:#fff;
+    padding:0.9rem;
 }

@@ -6,7 +6,8 @@ import CardInfo from "../CardInfo/CardInfo";
 import {
   firebaseArticles,
   firebaseLooper,
-  firebaseTeams
+  firebaseTeams,
+  firebase
 } from "../../../firebase";
 
 import LoadMore from "../LoadMore/LoadMore";
@@ -16,6 +17,7 @@ class NewsList extends React.Component {
   state = {
     teams: [],
     newsList: [],
+    newsListImages: [],
     startKey: "",
     limit: this.props.limit,
     length: 0,
@@ -35,7 +37,7 @@ class NewsList extends React.Component {
     });
   };
 
-  getStartKey = ()=>{
+  getStartKey = () => {
     let key = null;
 
     firebaseArticles
@@ -45,45 +47,56 @@ class NewsList extends React.Component {
         snapshot.forEach(childSnapshot => {
           key = childSnapshot.key;
         });
-        this.setState({ startKey: key }, ()=>{
+        this.setState({ startKey: key }, () => {
           this.fetchNews();
         });
       });
-  }
+  };
 
   fetchNews = () => {
-    let nextStartKey = '';
-    let data =[];
-    if(this.state.startKey){
+    let nextStartKey = "";
+    let data = [];
+    if (this.state.startKey) {
       firebaseArticles
-          .orderByKey()
-          .startAt(this.state.startKey)
-          .limitToFirst(this.state.limit + 1)
-      .once("value")
-      .then(snapshot => {
-        let c=0;
-          snapshot.forEach((childSnapshot)=>{
-            if(c < this.state.limit){
-              data.push({...childSnapshot.val(), id:childSnapshot.key});
+        .orderByKey()
+        .startAt(this.state.startKey)
+        .limitToFirst(this.state.limit + 1)
+        .once("value")
+        .then(snapshot => {
+          let c = 0;
+          snapshot.forEach(childSnapshot => {
+            if (c < this.state.limit) {
+              data.push({ ...childSnapshot.val(), id: childSnapshot.key });
               c++;
-            }
-            else{
+            } else {
               nextStartKey = childSnapshot.key;
             }
-          })
-        return data;
-      })
-      .then(data => {
-        this.setState({
-          newsList: [...this.state.newsList, ...data],
-          end: this.state.end + this.state.limit,
-          startKey:nextStartKey
+          });
+          return data;
         })
-      })
-      .catch(err => console.log(err));
-    }
-    else{
-      console.log("No records found !!")
+        .then(data => {
+          let imageURLs = data.map((item, index) => {
+            return new Promise(resolve => {
+              firebase
+                .storage()
+                .ref("articles")
+                .child(item.image)
+                .getDownloadURL()
+                .then(url => resolve(url));
+            });
+          });
+          Promise.all(imageURLs).then(values => {
+            this.setState({
+              newsList: [...this.state.newsList, ...data],
+              end: this.state.end + this.state.limit,
+              startKey: nextStartKey,
+              newsListImages: [...this.state.newsListImages, ...values]
+            });
+          });
+        })
+        .catch(err => console.log(err));
+    } else {
+      console.log("No records found !!");
     }
   };
 
@@ -138,7 +151,9 @@ class NewsList extends React.Component {
                 <div
                   className="newsItem-image left"
                   style={{
-                    backgroundImage: `url("images/articles/${item.image}")`
+                    backgroundImage: `url("${
+                      this.state.newsListImages[index]
+                    }")`
                   }}
                 />
                 <div className="right">
@@ -160,7 +175,6 @@ class NewsList extends React.Component {
   };
 
   render() {
-    // console.log(this.state.newsList)
     return (
       <div>
         <TransitionGroup className="newsList">
