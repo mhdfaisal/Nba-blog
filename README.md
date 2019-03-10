@@ -1,3 +1,6 @@
+## LIVE PREVIEW URL -
+### [https://nba-full-68543.firebaseapp.com/](https://nba-full-68543.firebaseapp.com/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
