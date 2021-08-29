@@ -1,12 +1,12 @@
 import * as firebase from 'firebase';
 
 var config = {
-    apiKey: "AIzaSyBxzpepucoMtREz9xDJoPZVvckvtO4N4Q4",
-    authDomain: "nba-full-68543.firebaseapp.com",
-    databaseURL: "https://nba-full-68543.firebaseio.com",
-    projectId: "nba-full-68543",
-    storageBucket: "nba-full-68543.appspot.com",
-    messagingSenderId: "149159280902"
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: ""
   };
   firebase.initializeApp(config);
 
